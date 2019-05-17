@@ -32,7 +32,7 @@ namespace PagerApi.NetCore.Example.Controllers
         [Route("GetMepped")]
         public async Task<IActionResult> GetMepped()
         {
-            var list = await _context.Test.Where(x => x.Id > 0).OrderBy(x => x.Id).ToListPagedAsync();
+            var list = await _context.Test.Where(x => x.Id > 0).ToListPagedAsync(x => x.Id, true);
             return Ok(list.Cast(x => x.Select(p => Mapper.Map<TestDTO>(p))));
         }
     }
